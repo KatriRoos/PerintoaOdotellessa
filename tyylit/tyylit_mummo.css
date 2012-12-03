@@ -1,0 +1,131 @@
+@charset "utf-8";
+/* CSS Document */
+
+body	{
+    background-image:url(../kuvat/taustamaisema.jpg); 
+    background-repeat:no-repeat;
+}
+
+.helahoito	{
+    float: left;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
+
+.nappula    {
+    background-color: #F30;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 10em;
+    height: 2em;
+}
+
+td {
+    padding:0.2em;
+}
+
+.tekstikentta {
+    border: none;
+    font-size: 1em;
+}
+
+#otsikko    {
+    float: left;
+    color: #F30;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6em;
+    font-weight: bold;
+    width: 18em;
+}
+
+#nappula_admin	{
+    margin-top: 2%;
+    float: left;
+}
+
+#nappula_ulos	{
+    margin-top: 2%;
+    margin-left: 1.6%;
+    float: left;
+}
+
+.tekstityyli_etusivu	{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.tyotaulu	{
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    clear: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    margin-top: 2%;
+}
+
+.taulukon_otsikoidentausta	{
+    background-color:#F30;
+}
+
+.uusityo	{
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    clear: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+
+#lisaatyoteksti	{
+    float: left;
+    margin-top: 3%;
+    clear: left;
+}
+
+#uusityonappi	{
+    float: left;
+    clear: left;
+    margin-top: 2%;
+}
+
+.sukulaisetlista	{
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    margin-top: 3%;
+    clear: left;
+}
+
+#poistatyonappi	{
+    float:left;
+    clear: left;
+}
+
+#poistatyoteksti	{
+    float:left;
+    clear: left;
+}
+
+#lisaatekijateksti	{
+    float: left;
+    margin-top: 2%;
+}
+
+#lisaatekijanappi	{
+    float:left;
+    clear: left;
+    width: 15em;
+}
+
+
+

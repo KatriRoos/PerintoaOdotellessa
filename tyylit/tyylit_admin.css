@@ -1,0 +1,212 @@
+
+.helahoito  {
+    float: left;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
+
+.nappula    {
+    background-color: #F30;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 10em;
+    height: 2em;
+}
+
+#otsikko    {
+    float: left;
+    color: #F30;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6em;
+    font-weight: bold;
+    width: 18em;
+}
+
+.taulukon_otsikoidentausta  {
+    background-color: #F30;
+}
+
+#nappula_takaisin   {
+    margin-top: 2%;
+    float: left;
+}
+
+
+#nappula_ulos	{
+    margin-top: 2%;
+    margin-left: 1.6%;
+    float: left;	
+}
+
+#moppauskuva	{
+    float: right;
+}
+
+.tekstityyli_etusivu	{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.sukulainentaulu    {
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    clear: right;
+}
+
+.lisaakayttajataulu {
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    clear: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+
+td {
+    padding:0.2em;
+}
+
+#lisaakayttajanappi	{
+    float: left;
+    clear: left;
+    margin-top: 2%;
+}
+
+#valitse_sukulaisuussuhde_teksti    {
+    float: left;
+    clear: left;
+    margin-top: 3%;
+}
+
+.mummotlista    {
+    float: left;
+    clear: left;
+    width: 400px;
+    border-color: #F30;
+}
+
+#poistasukuteksti   {
+    float: left;
+}
+
+#poistasukunappi    {
+    float: left;
+    clear: left;
+}
+
+.mummotaulu {
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    clear: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    margin-top: 3%;
+}
+
+#poistamummoteksti  {
+    float: left;
+    clear: left;
+}
+
+#poistamummonappi   {
+    float: left;
+    clear: left;
+}
+
+.tekstikentta {
+    border: none;
+    font-size: 1em;
+    width: 99%;
+}
+
+.mummonnimitaulu    {
+    width: 22em;
+    background-color: #FFF;
+    float: left;
+    clear: right;
+    margin-left: 2%;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+
+.sukulaisennimitaulu	{
+    width: 22em;
+    background-color: #FFF;
+    float: left;
+    clear: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+
+#sukulaisuussuhdenappi  {
+    float: left;
+    clear: left;
+    margin-top: 2%;
+    width: 15em;
+}
+
+.kayttajannimi_tekstikentta {
+    width: 20em;
+    height: 3em;
+    font-size: 1.2em;
+    float: left;
+    clear: left;
+    border: 1px;
+    border-color: #F30;
+    border-style: solid;
+}
+
+#kirjoitatunnusteksti   {
+    float: left;
+    clear: left;
+    margin-top: 3%;
+}
+
+#suhteetnappula {
+    float: left;
+    clear: left;
+    width: 15em;
+    margin-top: 2%;
+}
+
+.suhteettaulu   {
+    width: 45em;
+    margin-top: 3%;
+    background-color: #FFF;
+    float: left;
+    clear: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+
+#poistasuhdeteksti  {
+    float: left;
+    clear: left;
+    margin-top: 2%;
+}
+
+#uusikayttajateksti  {
+    float: left;
+    clear: left;
+    margin-top: 3%;
+}
+
+#poistasuhteetnappula   {
+    float: left;
+    clear: left;
+    width: 15em;
+}
