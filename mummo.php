@@ -14,10 +14,11 @@ varmistaMummo($kayttaja);
 <title>Perintöä odotellessa</title>
 </head>
 
-<body>
-<div class="helahoito">
+<body onload="poistaSamatArvot();">
+    <div class="helahoito">
     <p id="otsikko">Tervetuloa <?php echo $kayttaja->nimi ?>-<?php echo $kayttaja->status ?>!</p>
     
+    <!--Yläreunan painikkeet-->
     <?php if($kayttaja->admin){?>
         <form action="kirjaudu.php?admin" method="POST">
             <input name="admin" type="submit" class="nappula" id="nappula_admin" value="Ylläpito" />
@@ -28,8 +29,9 @@ varmistaMummo($kayttaja);
     	<input name="kirjaudu_ulos" type="submit" class="nappula" id="nappula_ulos" value="Kirjaudu ulos" />
     </form>
 
+    <!--Mummon lisäämät työt ja niiden poistaminen-->
     <form method="post" action="mummo_toiminnot.php">
-	<table class="tyotaulu" border="1">
+	<table id="tyotaulu" class="tyotaulu" border="1">
     	<caption class="tekstityyli_etusivu">
         	Työlista
       	</caption>
@@ -43,14 +45,14 @@ varmistaMummo($kayttaja);
         </tr>
         <?php foreach ($mummon_tyolista as $mummon_tyoLista){?>
             <tr>
-            <td><?php echo $mummon_tyoLista["nimi"]?></td>
-            <td><?php echo $mummon_tyoLista["kuvaus"]?></td>
-            <td><?php echo $mummon_tyoLista["deadline"]?></td>
-            <td><?php echo $mummon_tyoLista["varannut"]?></td>
-            <td><?php echo $mummon_tyoLista["teki"]?></td>
-            <td align="center">
-                <input type="radio" name="mummonTyolista" value="<?php echo $mummon_tyoLista['id']?>"/> 
-            </td>
+                <td><?php echo $mummon_tyoLista["nimi"]?></td>
+                <td><?php echo $mummon_tyoLista["kuvaus"]?></td>
+                <td><?php echo $mummon_tyoLista["deadline"]?></td>
+                <td><?php echo $mummon_tyoLista["varannut"]?></td>
+                <td><?php echo $mummon_tyoLista["teki"]?></td>
+                <td align="center">
+                    <input type="radio" name="mummonTyolista" value="<?php echo $mummon_tyoLista['id']?>"/> 
+                </td>
             </tr>		
 	<?php } ?>
        	</table>
@@ -58,7 +60,8 @@ varmistaMummo($kayttaja);
         <p class="tekstityyli_etusivu" id="poistatyoteksti">Valitse työ listasta poistaaksesi se.</p>
     	<input name="poistaTyo" type="submit" value="Poista työ" class="nappula" id="poistatyonappi"  />
     
-        <p class="tekstityyli_etusivu" id="lisaatyoteksti">Kirjoita uuden työn tiedot kenttiin. Deadline muodossa vvvv-kk-pv.</p>
+        <!--Uuden työtehtävän lisääminen-->
+        <p class="tekstityyli_etusivu" id="lisaatyoteksti">Kirjoita uuden työn tiedot kenttiin. Deadline muodossa pv.kk.vvvv</p>
     
 	<table class="uusityo" border="1">
     	<caption class="tekstityyli_etusivu">
@@ -78,6 +81,7 @@ varmistaMummo($kayttaja);
 
         <input name="lisaaTyo" type="submit" value="Lisää työ" class="nappula" id="uusityonappi"  />
        
+        <!--Sukulaisien tiedot ja tehdyn työn tekijöiden lisäys-->
         <table class="sukulaisetlista" border="1">
             <caption class="tekstityyli_etusivu">
                 <?php echo $kayttaja->nimi ?>-<?php echo $kayttaja->status ?>n kullanmurut
@@ -89,19 +93,21 @@ varmistaMummo($kayttaja);
             </tr>
             <?php foreach ($mummon_sukulaiset as $mummin_suku){?>
             <tr>
-            <td><?php echo $mummin_suku["nimi"]?></td>
-            <td><?php echo $mummin_suku["pisteet"]?></td>
-            <td align="center">
-                <input type="radio" name="mummonSukulista" value="<?php echo $mummin_suku['id']?>"/> 
-            </td>
+                <td><?php echo $mummin_suku["nimi"]?></td>
+                <td><?php echo $mummin_suku["pisteet"]?></td>
+                <td align="center">
+                    <input type="radio" name="mummonSukulista" value="<?php echo $mummin_suku['id']?>"/> 
+                </td>
             </tr>
             <?php } ?>
         </table>
     	       
-    	<p class="tekstityyli_etusivu" id="lisaatekijateksti">Valitse sukulainen ja työ merkataksesi työntekijä.</p>
-        <input name="lisaaTyontekija" type="submit" value="Lisää työn tehnyt sukulainen" class="nappula" id="lisaatekijanappi"  />
+    	<p class="tekstityyli_etusivu" id="lisaatekijateksti">Valitse sukulainen kullanmurut-listasta ja työ työlistasta merkataksesi työ tehdyksi.</p>
+        <input name="lisaaTyontekija" type="submit" value="Merkitse työ tehdyksi" class="nappula" id="lisaatekijanappi"  />
     </form>
 </div><!--helahoito päättyy-->
+
+<script src="mummon_tyotaulu_rivisiistija.js"></script>
 
 </body>
 </html>

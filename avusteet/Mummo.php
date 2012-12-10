@@ -4,7 +4,7 @@ require_once('Kysely.php');
 class Mummo extends Kysely {
     public function mummonTyolistaKysely($kayttaja)  {
         // Tämä kysely hakee mummo.php sivun työlistaan kaikki työt.     
-        $mummon_tyolista_kysely = $this->valmistele("SELECT * from 
+        $mummon_tyolista_kysely = $this->valmistele("SELECT id, nimi, kuvaus, deadline, varannut, teki from 
             (SELECT tyot.id, tyot.mummo_id as mi, tyot.nimi, tyot.kuvaus, tyot.deadline, 
             tyot.poistettu, varannut.varannut, teki.teki FROM tyot
             
@@ -24,11 +24,13 @@ class Mummo extends Kysely {
     }
   
     public function poistaTyo($tyoId) {
+        //Poistetaan mummon lisäämä työ.
         $poistaTyo = $this->valmistele("UPDATE tyot SET poistettu = 'true' WHERE id = ?");   
         return $poistaTyo->execute(array($tyoId));
     }
     
     public function lisaaTyo($kayttaja, $uusi_nimi, $uusi_kuvaus, $uusi_deadline)  {
+        //Mummo lisää uuden työn.
         $uusi_tyo = $this->valmistele("INSERT INTO tyot 
             (mummo_id, nimi, kuvaus, deadline, poistettu, milloin_tehdaan) VALUES 
             (?, ?, ?, ?, false, NULL)");
@@ -37,7 +39,8 @@ class Mummo extends Kysely {
     
     public function mummonSukulaiset($kayttaja)  {
         // Tämä kysely hakee mummo.php sivun sukulaiset-listaan nimet ja pisteet.     
-        $mummon_sukulaisetlista_kysely = $this->valmistele("SELECT * FROM sukulaisuus, (SELECT kayttajat.id, kayttajat.nimi, pisteet.pisteet FROM kayttajat
+        $mummon_sukulaisetlista_kysely = $this->valmistele("SELECT * FROM sukulaisuus, 
+            (SELECT kayttajat.id, kayttajat.nimi, pisteet.pisteet FROM kayttajat
             LEFT JOIN (SELECT kayttajat.nimi AS nimi, COUNT(tyontekijat.nimi_id) as pisteet FROM tyontekijat,
             kayttajat WHERE kayttajat.id=tyontekijat.nimi_id AND onko_tyo_tehty=true AND kayttajat.poistettu = false GROUP BY nimi) AS pisteet 
             ON kayttajat.nimi=pisteet.nimi) AS suku WHERE 
@@ -48,6 +51,7 @@ class Mummo extends Kysely {
     }
 
     public function lisaaTyolleTekija($tyoid, $tekija) {
+        //Lisätään uusi työntekijä tai päivitetään jo löytyvää.
         if($this->onkoTyontekija($tyoid, $tekija))  {
             $tyontekija = $this->valmistele("UPDATE tyontekijat SET onko_tyo_tehty = true
                 WHERE tyonnimi_id = ? AND nimi_id = ?");   
@@ -62,6 +66,7 @@ class Mummo extends Kysely {
     }
     
     public function onkoTyontekija($tyoid, $tekija)    {
+        //Löytyykö sukulainen jo työntekijät taulusta.
         $tyontekija = $this->valmistele("SELECT id FROM tyontekijat
             WHERE tyonnimi_id = ? AND nimi_id = ?");
         return $tyontekija->execute(array($tyoid, $tekija)) && $tyontekija->rowCount() > 0;

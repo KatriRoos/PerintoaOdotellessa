@@ -2,6 +2,7 @@
 
 require_once 'avusteet.php';
 
+//Tunnistetaan käyttäjä ja katsotaan onko sukulainen vai mummu ja ohjataan oikealle sivulle.
 if (isset($_GET['sisaan'])) {
     $kayttaja_id = $kyselija->tunnista($_POST['tunnus'], $_POST['salasana']);
     if (!$kayttaja_id) {
@@ -16,6 +17,7 @@ if (isset($_GET['sisaan'])) {
     }
 }
 
+//Muita nappulatoimintoja: Admin-sivulle ja uloskirjautuminen.
 if (isset($_GET['ulos'])) {
     unset($sessio->kayttaja_id);
     ohjaa('index.php');

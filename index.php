@@ -1,3 +1,7 @@
+<?php require_once 'avusteet.php';
+$onkoTalkoita = $sukuKyselija->onkoTalkoolaisia();
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,36 +17,7 @@
 
 <img class="ukonkuva" alt="Etusivun kuva sedästä" src="kuvat/etusivun_seta.png" width="500" height="338"/>
 
-<!--PISTE TAULUKKO JOULUKUULLE
-<table class="pisteet">
-  <tr>
-    <th class="isopunanen" colspan="2" scope="col">Perintö pisteytys</th>
-  </tr>
-  <tr>
-    <td>XXXXXXXXX</td>
-    <td>xxxxx p</td>
-  </tr>
-  <tr>
-    <td>XXXXXXXXX</td>
-    <td>xxxxx p</td>
-  </tr>
-  <tr>
-    <td>XXXXXXXXX</td>
-    <td>xxxxx p</td>
-  </tr>
-  <tr>
-    <td>XXXXXXXXX</td>
-    <td>xxxxx p</td>
-  </tr>
-  <tr>
-    <td>XXXXXXXXX</td>
-    <td>xxxxx p</td>
-  </tr>
-</table>
-
-RIKAS UKON KUVA PISTETAULUN VIEREEN JOULUNA
-<img class="kelluuvasemmalle" alt="Rikas ukko" src="kuvat/rikas.png" width="160" height="172"/>
--->
+<!--Kirjautumislaatikot-->
 <div class="lootat">
 	<p class="tekstityyli_etusivu">Kirjaudu sisään!<br /><br /></p>
 	<p class="tekstityyli_etusivu">Kayttajatunnus</p>
@@ -54,14 +29,32 @@ RIKAS UKON KUVA PISTETAULUN VIEREEN JOULUNA
     	<input name="kirjaudu" type="submit" class="nappula" value="Kirjaudu" />
         </form>
 </div>
-<!--TÄSSÄ JOULUKUVA
-<img class="joulukuva" alt="Joulu kuva" src="kuvat/joulu.png" width="150" height="210"/>
--->
-<!--TÄSSÄ TALKOO LOOTA
-<div class="tekstityyli_etusivu" id="talkooloota">
-<div class="isopunanen">TALKOOT!</div><div>XXXXXXX on järjestänyt talkoot XXXXXXX 00.00.0000! Ilmoittautuneet: XXXXX, XXXXX, XXXXX. <div class="isopunanen">ILMOITTAUDU JA TIENAA PISTE!</div>
+
+<!--Talkoo laatikot jos sellaisia on-->
+<?php 
+if($onkoTalkoita)   {
+    foreach ($onkoTalkoita as $ot)  {
+        $pomo = $sukuKyselija->haeTalkooPomo($ot["id"]);
+        $tyo = $sukuKyselija->haeTalkooTyo($ot["id"]);
+?>
+
+    <div class="tekstityyli_etusivu" id="talkooloota">
+        <div class="isopunanen">TALKOOT!</div>
+        <div>
+            <?php  echo $pomo["pomo"] ?> 
+            on järjestänyt talkoot: <?php echo $tyo["nimi"] ?> 
+            <?php echo $tyo["milloin"] ?>! 
+            Ilmoittautuneet: <?php foreach ($sukuKyselija->haeTalkoolaiset($ot["id"]) as $t)  { 
+                                echo $t["nimi"]?>,
+                             <?php } ?> 
+          
+        </div>
+        <div class="isopunanen">ILMOITTAUDU JA TIENAA PISTE!</div>
+    </div>
+<?php } 
+}?>
+
 </div>
-</div>-->
 <!--helahoito päättyy-->
 </div>
 </body>

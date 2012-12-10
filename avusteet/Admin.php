@@ -36,13 +36,15 @@ class Admin extends Kysely {
         return $admin_mummotlista_kysely->fetchAll();
     }
 
-        public function poistaKayttaja($sukulainen)  {
+    public function poistaKayttaja($sukulainen)  {
+        //"Poistaa" käyttäjän eli laittaa kantaan arvon poistettu.
         $piilota_sukulainen = $this->valmistele("UPDATE kayttajat SET poistettu = 'true' WHERE id = ?");
         return $piilota_sukulainen->execute(array($sukulainen));
     }
     
     public function lisaaKayttaja($uusi_nimi, $uusi_kayttajatunnus, $uusi_salasana, 
         $uusi_status, $uusi_admin)  {
+        //Lisää uusi käyttäjä.
         $uusi_kayttaja = $this->valmistele("INSERT INTO kayttajat 
             (nimi, kayttajatunnus, salasana, status, admin) VALUES 
             (?, ?, ?, ?, ?)");
@@ -51,12 +53,14 @@ class Admin extends Kysely {
     }
     
     public function luoSukulaiset($sukulainen, $mummo) {
+        //Luo uuden sukulaisuussuhteen sukulaisuus-tauluun.
         $sukulaisuus = $this->valmistele("INSERT INTO sukulaisuus 
             (sukulainen_id, mummo_id) VALUES (?, ?)");
         return $sukulaisuus->execute(array($sukulainen, $mummo));
     }
     
     public function haeSukulaissuhteet() {
+        //Etsii sukulaiset.
         $sukulaisuus = $this->valmistele("SELECT mummo.nimi as mummeli, sukulainen.nimi, sukulaisuus.id
             FROM sukulaisuus JOIN kayttajat AS mummo
             ON mummo_id = mummo.id AND mummo.poistettu = false
@@ -68,6 +72,7 @@ class Admin extends Kysely {
     }
     
     public function poistaSukulaissuhde($id) {
+        //Poistaa sukulaisuussuhteen.
         $piilota_sukulainen = $this->valmistele("DELETE FROM sukulaisuus WHERE id = ?");
         return $piilota_sukulainen->execute(array($id));
     }

@@ -2,6 +2,7 @@
  
 $kayttaja = $kyselija->haeKayttaja($sessio->kayttaja_id); 
 
+//Varmistetaan että sivulle tulijalla on admin-oikeudet.
 varmistaAdmin($kayttaja);
 
 $sukulaiset = $adminKyselija->haeSukulaiset($kayttaja);
@@ -24,6 +25,7 @@ $sukulaissuhteet = $adminKyselija->haeSukulaissuhteet();
     <p id="otsikko" class="tekstityyli_etusivu">Tervetuloa ylläpitäjä <?php echo $kayttaja->nimi ?>!</p>     
     <img id="moppauskuva" src="kuvat/moppaa.png" alt="moppaus kuva" height="108" width="108"/>
     
+    <!--Yläreunan painikkeet-->
     <form action="kirjaudu.php?takaisin" method="POST">
         <input name="takaisin" type="submit" class="nappula" id="nappula_takaisin" value="Takaisin" />
     </form>
@@ -32,6 +34,7 @@ $sukulaissuhteet = $adminKyselija->haeSukulaissuhteet();
 	<input name="kirjaudu_ulos" type="submit" class="nappula" id="nappula_ulos" value="Kirjaudu ulos" />
     </form>
     
+    <!--Sukulaisten nimet ja poisto toiminto-->
     <form method="post" action="admin_poista_kayttaja.php">
         <table class="sukulainentaulu" border="1" >
             <caption class="tekstityyli_etusivu">
@@ -57,6 +60,7 @@ $sukulaissuhteet = $adminKyselija->haeSukulaissuhteet();
         <input type="submit" value="Poista sukulainen" class="nappula" id="poistasukunappi"  />
     </form>
     
+    <!--Uuden käyttäjän lisäys-->
     <p class="tekstityyli_etusivu" id="uusikayttajateksti">Lisää uuden käyttäjän tiedot kenttiin. Jos käyttäjä on perinnönjakaja, lisää status.</p>
     <form method="post" action="admin_lisaa_kayttaja.php">
         <table class="lisaakayttajataulu" border="1">
@@ -85,13 +89,14 @@ $sukulaissuhteet = $adminKyselija->haeSukulaissuhteet();
         <input type="submit" value="Lisää käyttäjä" class="nappula" id="lisaakayttajanappi"  />
     </form>
     
+    <!--Mummojen nimet ja poistaminen-->
     <form method="post" action="admin_poista_kayttaja.php">
         <table class="mummotaulu" border="1" >
             <caption class="tekstityyli_etusivu">
                     Mummot, papat ja muut rikkaat tyypit
             </caption>
             <tr class="taulukon_otsikoidentausta">
-                    <th scope="col">Nimi</th>
+                <th scope="col">Nimi</th>
                 <th scope="col">Käyttäjätunnus</th>
                 <th scope="col">Status</th>
                 <th scope="col">Valitse</th>
@@ -108,11 +113,12 @@ $sukulaissuhteet = $adminKyselija->haeSukulaissuhteet();
             <?php } ?>
         </table>
 
-        <p class="tekstityyli_etusivu" id="poistamummoteksti">Valitse poistettava mummo listasta.</p>
+        <p class="tekstityyli_etusivu" id="poistamummoteksti">Valitse poistettava perinnönjakaja listasta.</p>
 
-        <input type="submit" value="Poista Mummo" class="nappula" id="poistamummonappi"  />
+        <input type="submit" value="Poista perinnönjakaja" class="nappula" id="poistamummonappi"  />
     </form>
     
+    <!--Sukulaisuussuhteiden luominen-->
     <form method="post" action="admin_luo_sukulaiset.php">
         <p class="tekstityyli_etusivu" id="valitse_sukulaisuussuhde_teksti">
             Valitse vasemmasta taulusta sukulainen ja oikeasta perinnönjakaja.
@@ -159,12 +165,13 @@ $sukulaissuhteet = $adminKyselija->haeSukulaissuhteet();
     </form>
         
     <form method="post" action="admin_poista_sukulaissuhde.php">
-<!--        <p class="tekstityyli_etusivu" id="kirjoitatunnusteksti">Kirjoita henkilön käyttäjätunnus, jonka sukulaisuussuhteet haluat.</p>
-            
+        
+        <!--MAHDOLLINEN SUKULAISUUSSUHTEIDEN HAKUKENTTÄ-->
+<!--    <p class="tekstityyli_etusivu" id="kirjoitatunnusteksti">Kirjoita henkilön käyttäjätunnus, jonka sukulaisuussuhteet haluat.</p>            
         <input class="kayttajannimi_tekstikentta" name="kayttajannimi_tekstikentta" type="text" maxlength="70" />
-    
         <input class="nappula" id="suhteetnappula" type="submit" value="Hae sukulaisuussuhteet" /> -->
         
+        <!--Sukulaissuhteet listattuna ja niiden poistaminen-->
         <table class="suhteettaulu" border="1" >
             <caption class="tekstityyli_etusivu">
                     Sukulaisuussuhteet

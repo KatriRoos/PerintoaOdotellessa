@@ -1,3 +1,10 @@
+body    {
+    background-color: #daf2f6;
+}
+
+td  {
+    
+}
 
 .helahoito  {
     float: left;
@@ -43,6 +50,7 @@
 
 #moppauskuva	{
     float: right;
+    margin-right: 10%;
 }
 
 .tekstityyli_etusivu	{
@@ -122,6 +130,7 @@ td {
 #poistamummonappi   {
     float: left;
     clear: left;
+    width: 11em;
 }
 
 .tekstikentta {

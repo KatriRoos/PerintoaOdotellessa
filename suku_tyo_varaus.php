@@ -3,9 +3,11 @@ require_once 'avusteet.php';
 
 $kayttaja = $kyselija->haeKayttaja($sessio->kayttaja_id); 
 
-$v = (int)substr($_POST['varauspaiva'], 0, 4);
-$kk = (int)substr($_POST['varauspaiva'], 5, 2);
-$pv = (int)substr($_POST['varauspaiva'], 8, 2);
+//Tarkastetaan, että päivämäärä oikein ja lisätään uusi työvaraus.
+$pv = (int)substr($_POST['varauspaiva'], 0, 2);
+$kk = (int)substr($_POST['varauspaiva'], 3, 2);
+$v = (int)substr($_POST['varauspaiva'], 6, 4);
+
 
 if(checkdate($kk, $pv, $v) && !is_null($_POST['vapaatTyot'])) {
     $sukuKyselija->lisaaTyoVaraus($_POST['varauspaiva'], $_POST['vapaatTyot'], $kayttaja);

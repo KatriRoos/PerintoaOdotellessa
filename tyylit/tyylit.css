@@ -2,84 +2,116 @@
 /* CSS Document */
 
 .helahoito	{
-	float:left;
-	width:1000px;
+    float: left;
+    width: 90%;
+}
+
+.taulukon_otsikoidentausta  {
+    background-color: #F30;
 }
 
 .kelluuvasemmalle {
-	float:left;
+    float: left;
+    clear: left;
 }
 
 .ukonkuva {
-	padding-left:20px;
-	float:left;
+    padding-left: 3%;
+    float: left;
 }
 
 .lootat {
-	margin-left:15%;
-	float:left;
-	width:200px;
-	height:30px;
+    margin-left: 10%;
+    float: left;
+    width: 20em;
+    height: 20em;
 }
 
 .salasana {
-	border-style:outset;
-	border-color:#F30;
-	width:200px;
-	height:30px;
+    border-style: outset;
+    border-color: #F30;
+    width: 15em;
+    height: 2em;
 }
 
 .tekstityyli_etusivu	{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:18px;
-	font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 .kayttajatunnus {
-	border-style:outset;
-	border-color:#F30;
-	width:200px;
-	height:30px;
+    border-style: outset;
+    border-color: #F30;
+    width: 15em;
+    height: 2em;
 }
 
-.nappula	{
-	background-color:#F30;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:18px;
-	font-weight:bold;
-	width:200px;
-	height:35px;
-	margin-top:20px;	
+.nappula    {
+    background-color: #F30;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 10em;
+    height: 2em;
+    margin-top: 10%;
 }
 
-.joulukuva {
-	float:left;
-	margin-right:30%;
+.piste_nappula    {
+    background-color: #F30;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 10em;
+    height: 2em;
 }
+
 
 #talkooloota {
-	border:5px;
-	border-style:solid;
-	border-color:#000;
-	width:600px;
-	height:auto;
-	padding:5px;
-	text-align:center;
-	float:left;
-	margin-top:2%;
-	margin-left:17%;
+    border:5px;
+    border-style:solid;
+    border-color:#000;
+    width:600px;
+    height:auto;
+    padding:5px;
+    text-align:center;
+    float:left;
+    margin-top:2%;
+    margin-left:1%;
 }
 
 .isopunanen {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:25px;
-	font-weight:bold;
-	color:#F00;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #F00;
 }
 
-.pisteet {
-	width:400px; 
-	border:none;
-	cellpadding:5;
-	float:left;
+.pisteet    {
+    width: 45em;
+    background-color: #FFF;
+    float: left;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    clear: right;
+    margin-left: 1.5%;
+}
+
+.pisteukko  {
+    float: right;
+    margin-right: 5%;    
+}
+
+#nappula_ulos   {
+    float: left;
+    margin-left: 2%;
+    margin-top: 5%;
+}
+
+#nappula_takaisin   {
+    margin-left: 1.5%;
+    float: left;
+    clear: left;
+    margin-top: 5%;
 }

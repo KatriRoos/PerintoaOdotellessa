@@ -3,10 +3,12 @@ require_once 'avusteet.php';
 
 $kayttaja = $kyselija->haeKayttaja($sessio->kayttaja_id); 
 
+//Varmistetaan, että admin suorittamassa toimintoa.
 varmistaAdmin($kayttaja);
 
 $uusi_status = empty($_POST['uusi_status']) ? null : $_POST['uusi_status'];
 
+//Jos kentissä tekstiä niin lisätään uusi käyttäjä.
 if(!is_null($_POST['uusi_nimi']) && !is_null($_POST['uusi_kayttajatunnus']) &&
         $_POST['uusi_salasana'])    {
     $adminKyselija->lisaaKayttaja($_POST['uusi_nimi'],

@@ -1,5 +1,7 @@
 <?php
 
+//Apufunctioita mm. kaikenlaisen varmistamiseen.
+
 require_once 'avusteet/kirjautumiskysely.php';
 require_once 'avusteet/sessio.php';
 require_once 'avusteet/Admin.php';
@@ -33,3 +35,10 @@ function varmistaMummo($kayttaja)    {
         die("Pääsy kielletty!");
    }
 }
+
+function varmistaJoulukuu()    {
+   if(!date('M') === 'Dec')    {
+        die("Pääsy kielletty!");
+   }
+}
+
