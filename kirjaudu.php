@@ -4,7 +4,7 @@ require_once 'avusteet.php';
 
 //Tunnistetaan käyttäjä ja katsotaan onko sukulainen vai mummu ja ohjataan oikealle sivulle.
 if (isset($_GET['sisaan'])) {
-    $kayttaja_id = $kyselija->tunnista($_POST['tunnus'], $_POST['salasana']);
+    $kayttaja_id = $kyselija->tunnista($_POST['tunnus'], md5($_POST['salasana']));
     if (!$kayttaja_id) {
         ohjaa('index.php');
     }

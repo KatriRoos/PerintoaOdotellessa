@@ -5,8 +5,8 @@ $kayttaja = $kyselija->haeKayttaja($sessio->kayttaja_id);
 //Sivulle pääsee vain jos on joulukuu.
 varmistaJoulukuu();
 
-//Haetaan pistetaulu.
-$sukulaistenPisteet = $sukuKyselija->pisteet($kayttaja);
+//Haetaan kayttajan mummolista.
+$omatMummot = $sukuKyselija->mummot($kayttaja);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,10 +22,17 @@ $sukulaistenPisteet = $sukuKyselija->pisteet($kayttaja);
 <!--Otsikko-->
 <img class="kelluuvasemmalle" alt="Perintöä odotellessa" src="kuvat/etusivun_otsikko.png" height="167" width="994" />
 
+<!--Kuva-->
+<img class="pisteukko" alt="Rikas ukko" src="kuvat/rikas.png" width="160" height="172"/>
+
 <!--Pistetaulukko-->
+<?php 
+foreach ($omatMummot as $mummit)    {
+    $sukulaistenPisteet = $sukuKyselija->pisteet($mummit["mummot"]);
+?>
 <table class="pisteet" border="1">
     <caption class="isopunanen">
-        Perintöpisteytys
+        Perintöpisteytys: <?php echo $mummit["nimi"]; ?>-<?php echo $mummit["status"];?>
     </caption>
     <tr class="taulukon_otsikoidentausta">
         <th scope="col">Nimi</th>
@@ -39,8 +46,7 @@ $sukulaistenPisteet = $sukuKyselija->pisteet($kayttaja);
     <?php } ?>
 </table>
 
-<!--Kuva-->
-<img class="pisteukko" alt="Rikas ukko" src="kuvat/rikas.png" width="160" height="172"/>
+<?php } ?>
 
 <!--Nappi josta pääsee takaisin sukulaisen näkymään.-->
 <form action="kirjaudu.php?takaisin" method="POST">

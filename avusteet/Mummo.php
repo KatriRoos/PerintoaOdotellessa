@@ -41,12 +41,14 @@ class Mummo extends Kysely {
         // Tämä kysely hakee mummo.php sivun sukulaiset-listaan nimet ja pisteet.     
         $mummon_sukulaisetlista_kysely = $this->valmistele("SELECT * FROM sukulaisuus, 
             (SELECT kayttajat.id, kayttajat.nimi, pisteet.pisteet FROM kayttajat
-            LEFT JOIN (SELECT kayttajat.nimi AS nimi, COUNT(tyontekijat.nimi_id) as pisteet FROM tyontekijat,
-            kayttajat WHERE kayttajat.id=tyontekijat.nimi_id AND onko_tyo_tehty=true AND kayttajat.poistettu = false GROUP BY nimi) AS pisteet 
-            ON kayttajat.nimi=pisteet.nimi) AS suku WHERE 
+            LEFT JOIN (SELECT kayttajat.nimi AS knimi, COUNT(tyontekijat.nimi_id) as pisteet FROM tyontekijat,
+            kayttajat, tyot WHERE kayttajat.id=tyontekijat.nimi_id AND onko_tyo_tehty=true 
+            AND kayttajat.poistettu = false AND tyontekijat.tyonnimi_id = tyot.id AND
+            tyot.mummo_id = ? GROUP BY knimi) AS pisteet 
+            ON kayttajat.nimi=pisteet.knimi) AS suku WHERE 
             suku.id=sukulaisuus.sukulainen_id AND sukulaisuus.mummo_id = ? ORDER BY suku.nimi");
 
-        $mummon_sukulaisetlista_kysely->execute(array($kayttaja->id));
+        $mummon_sukulaisetlista_kysely->execute(array($kayttaja->id, $kayttaja->id));
         return $mummon_sukulaisetlista_kysely->fetchAll();
     }
 

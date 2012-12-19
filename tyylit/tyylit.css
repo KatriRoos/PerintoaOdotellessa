@@ -94,24 +94,24 @@
     border-collapse: collapse;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.2em;
-    clear: right;
     margin-left: 1.5%;
+    margin-bottom: 2%;
 }
 
 .pisteukko  {
     float: right;
-    margin-right: 5%;    
+    margin-right: 5%;
 }
 
 #nappula_ulos   {
     float: left;
     margin-left: 2%;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 #nappula_takaisin   {
     margin-left: 1.5%;
     float: left;
     clear: left;
-    margin-top: 5%;
+    margin-top: 2%;
 }

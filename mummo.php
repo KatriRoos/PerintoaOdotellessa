@@ -19,7 +19,7 @@ varmistaMummo($kayttaja);
     <p id="otsikko">Tervetuloa <?php echo $kayttaja->nimi ?>-<?php echo $kayttaja->status ?>!</p>
     
     <!--Yläreunan painikkeet-->
-    <?php if($kayttaja->admin){?>
+    <?php if($kayttaja->admin){ ?>
         <form action="kirjaudu.php?admin" method="POST">
             <input name="admin" type="submit" class="nappula" id="nappula_admin" value="Ylläpito" />
         </form>

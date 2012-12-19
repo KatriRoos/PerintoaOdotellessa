@@ -139,17 +139,28 @@ class Sukulainen extends Kysely {
         return $talkooTyo->fetch();
     }
     
-    public function pisteet($kayttaja)  {
+    public function pisteet($mummoId)  {
         // Tämä kysely hakee piste-listaan nimet ja pisteet.     
         $pisteet = $this->valmistele("SELECT * FROM (SELECT DISTINCT kayttajat.id, kayttajat.nimi
             FROM kayttajat, (SELECT sukulaisuus.sukulainen_id as suku_id FROM sukulaisuus 
-            WHERE sukulaisuus.mummo_id IN (SELECT sukulaisuus.mummo_id FROM sukulaisuus 
-            WHERE sukulaisuus.sukulainen_id = ?)) as suku 
+            WHERE sukulaisuus.mummo_id = ?) as suku 
             WHERE kayttajat.poistettu = false AND kayttajat.id = suku.suku_id) AS eka
             LEFT JOIN
-            (SELECT tyontekijat.nimi_id, COUNT(tyontekijat.id) AS pisteet FROM tyontekijat WHERE
-            tyontekijat.onko_tyo_tehty = true GROUP BY tyontekijat.nimi_id) AS pisteet
+            (SELECT tyontekijat.nimi_id, COUNT(tyontekijat.id) AS pisteet FROM tyontekijat, tyot WHERE
+            tyontekijat.onko_tyo_tehty = true AND tyontekijat.tyonnimi_id = tyot.id 
+            AND tyot.mummo_id = ? GROUP BY tyontekijat.nimi_id) AS pisteet
             ON pisteet.nimi_id = eka.id ORDER BY pisteet.pisteet DESC NULLS LAST");
+
+        $pisteet->execute(array($mummoId, $mummoId));
+        return $pisteet->fetchAll();
+    }
+    
+    public function mummot($kayttaja)   {
+        // Tämä kysely kayttajan omat mummot.     
+        $pisteet = $this->valmistele("SELECT kayttajat.id AS mummot, kayttajat.nimi, 
+            kayttajat.status FROM kayttajat,sukulaisuus WHERE 
+            sukulaisuus.sukulainen_id = ? AND kayttajat.id =
+            sukulaisuus.mummo_id AND kayttajat.poistettu = false");
 
         $pisteet->execute(array($kayttaja->id));
         return $pisteet->fetchAll();
