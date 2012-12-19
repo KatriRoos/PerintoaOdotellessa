@@ -1,0 +1,67 @@
+CREATE DATABASE  perintoa_odotellessa;
+SET DATESTYLE TO german;
+CREATE TABLE kayttajat (
+    id SERIAL NOT NULL,
+    nimi character varying(70) NOT NULL,
+    kayttajatunnus character varying(30) NOT NULL,
+    salasana character varying(40) NOT NULL,
+    status character varying(30),
+    admin boolean,
+    poistettu boolean DEFAULT false NOT NULL
+);
+
+CREATE TABLE sukulaisuus (
+    id SERIAL NOT NULL,
+    sukulainen_id integer NOT NULL,
+    mummo_id integer NOT NULL
+);
+
+CREATE TABLE tyot (
+    id SERIAL NOT NULL,
+    mummo_id integer NOT NULL,
+    nimi character varying(100) NOT NULL,
+    kuvaus character varying(300) NOT NULL,
+    deadline date NOT NULL,
+    poistettu boolean DEFAULT false NOT NULL,
+    milloin_tehdaan date
+);
+
+CREATE TABLE tyontekijat (
+    id SERIAL NOT NULL,
+    nimi_id integer NOT NULL,
+    tyonnimi_id integer NOT NULL,
+    onko_tyo_tehty boolean DEFAULT false NOT NULL
+);
+ALTER TABLE ONLY kayttajat
+ADD CONSTRAINT kayttajat_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY sukulaisuus
+ADD CONSTRAINT sukulaisuus_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY tyontekijat
+ADD CONSTRAINT tyontekijat_nimi_id_tyonnimi_id_key UNIQUE (nimi_id, tyonnimi_id);
+
+ALTER TABLE ONLY tyontekijat
+ADD CONSTRAINT tyontekijat_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY tyot
+ADD CONSTRAINT tyot_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY sukulaisuus
+    ADD CONSTRAINT sukulaisuus_mummo_id_fkey FOREIGN KEY (mummo_id) REFERENCES kayttajat(id);
+
+ALTER TABLE ONLY sukulaisuus
+    ADD CONSTRAINT sukulaisuus_sukulainen_id_fkey FOREIGN KEY (sukulainen_id) REFERENCES kayttajat(id);
+
+ALTER TABLE ONLY tyontekijat
+    ADD CONSTRAINT tyontekijat_nimi_id_fkey FOREIGN KEY (nimi_id) REFERENCES kayttajat(id);
+
+ALTER TABLE ONLY tyontekijat
+    ADD CONSTRAINT tyontekijat_tyonnimi_id_fkey FOREIGN KEY (tyonnimi_id) REFERENCES tyot(id);
+
+ALTER TABLE ONLY tyot
+    ADD CONSTRAINT tyot_mummo_id_fkey FOREIGN KEY (mummo_id) REFERENCES kayttajat(id);
+
+INSERT INTO kayttajat (nimi, kayttajatunnus, salasana, status, admin, poistettu) VALUES
+('Irma','irma','76af47488ac4ecce7c29005f15cf7d0e','mummo',true,false);
+
+ 
